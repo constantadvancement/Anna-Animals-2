@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { ApiServiceService } from '../api-service.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
+
   constructor(private api: ApiServiceService, private router: ActivatedRoute) {}
 
   readAnimal: any;
@@ -33,7 +38,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     this.getAlldata();
 
-    this.router.paramMap.subscribe(params => {
+    this.router.paramMap.subscribe((params) => {
       this.getparamid = params.get('id');
       if (!this.getparamid) {
         console.error('ID parameter is null or undefined.');
@@ -42,7 +47,10 @@ export class CreateComponent implements OnInit {
         console.log(this.getparamid, 'mini subscribe get paramsid');
       }
     });
-    console.log("trying to get id of parameter", this.router.snapshot.paramMap.get('id'))
+    console.log(
+      'trying to get id of parameter',
+      this.router.snapshot.paramMap.get('id')
+    );
     this.getparamid = this.router.snapshot.paramMap.get('id');
     console.log('getparamid:', this.getparamid);
     if (this.getparamid) {
