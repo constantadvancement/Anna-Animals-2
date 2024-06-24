@@ -10,8 +10,8 @@ import { ApiServiceService } from '../api-service.service';
   styleUrls: ['./select.component.css'], // Correct property name
 })
 export class SelectComponent implements OnInit {
-  readAnimal: any[] = [];
-  selectedAnimalDescription: string | undefined;
+  readAnimal: any;
+  selectedAnimalDescription!: any;
 
   constructor(private router: Router, private api: ApiServiceService) {}
 
@@ -25,7 +25,7 @@ export class SelectComponent implements OnInit {
       .getAllAnimals()
       .then((res: any) => {
         console.log('this is res data', res);
-        this.readAnimal = res.data || []; // Initialize with empty array if res is falsy
+        this.readAnimal = res.data; // Initialize with empty array if res is falsy
         console.log('Received data:', this.readAnimal);
       })
       .catch((error: any) => {
@@ -33,17 +33,28 @@ export class SelectComponent implements OnInit {
       });
   }
 
-  onAnimalSelected(selectedId: string): void {
+  onAnimalSelected(selectedId: any): void {
     console.log('Selected animal ID:', selectedId);
 
-    if (selectedId !== '0') {
+    if (selectedId < 0){
+      this.selectedAnimalDescription = '';
+
+    }
+
+    else if (selectedId !== '0') {
       // Make API call or perform logic based on selectedId
       this.api
         .getDescription(selectedId)
         .then((res: any) => {
-          if (res.data && res.data.length > 0) {
-            this.selectedAnimalDescription = res.data[0].description;
+          console.log('API Response:', res); // Log entire response for debugging
+
+          // Check if res.data exists and has a length > 0
+          if (this.readAnimal.length > 0) {
+            console.log('what its grabing', this.readAnimal[selectedId])
+            console.log('Inside if statement:', this.readAnimal[selectedId].description);
+            this.selectedAnimalDescription = this.readAnimal[selectedId].description;
           } else {
+            console.log('No data found in response.');
             this.selectedAnimalDescription = 'Animal description not found';
           }
         })
@@ -52,8 +63,8 @@ export class SelectComponent implements OnInit {
           this.selectedAnimalDescription = 'Error fetching description';
         });
     } else {
-      // Handle default case where '0' is selected
-      this.selectedAnimalDescription = '';
+      this.selectedAnimalDescription = this.readAnimal[0].description;
+
     }
   }
 }

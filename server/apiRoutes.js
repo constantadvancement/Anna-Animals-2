@@ -137,10 +137,11 @@ router.get('/data/delete/:id', (req, res) => {
   });
 });
 
-// delete animal
+// descriptions animal
 router.get('/data/descriptions/:id', (req, res) => {
+  console.log('in apiRoutes function for descriptions')
   let qrId = req.params.id;
-  let qr = `SELECT description FROM animals WHERE id = ${qrId}`;
+  let qr = `SELECT description FROM animals WHERE id = ${qrId-1}`;
   db.query(qr, (err, results) => {
     if (err) {
       console.log("Error fetching animal by ID:", err);

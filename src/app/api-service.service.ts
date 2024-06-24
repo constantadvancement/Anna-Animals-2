@@ -63,7 +63,7 @@ export class ApiServiceService {
   //get single data for drescription by id
   getDescription(id: any): Promise<any>{
     let ids = id;
-    return fetch(`${this.apiUrl}/description/${ids}`)
+    return fetch(`${this.apiUrl}/descriptions/${ids}`)
   }
 
 }
