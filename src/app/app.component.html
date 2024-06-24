@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <header>
+    <h3>Yolo</h3>
+  </header>
+
+  <body>
+    <ul class="nav nav-tabs nav-tabs-thick">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="isTabActive('/')" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="isTabActive('/create')"
+          href="/create"
+          >Create</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="isTabActive('/update')"
+          href="/update"
+          >Animals</a
+        >
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true"> </a>
+      </li> -->
+    </ul>
+
+    <router-outlet></router-outlet>
+  </body>
+</html>

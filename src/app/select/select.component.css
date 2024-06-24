@@ -1,0 +1,18 @@
+#output {
+  margin-left: 50px;
+}
+
+.selectBox select {
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.selectBox #output {
+  margin-top: 10px;
+  font-size: 18px;
+  display: inline-block;
+  vertical-align: top;
+}

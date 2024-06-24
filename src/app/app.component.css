@@ -1,0 +1,12 @@
+header{
+  background-color: rgb(13, 13, 112);
+  color: rgb(13, 13, 112)
+}
+
+.nav-tabs.nav-tabs-thick .nav-link {
+  color: rgb(13, 13, 112) !important;
+  font-family: times-new-roman;
+  font-size: x-large;
+  font-weight:bold;
+}
+

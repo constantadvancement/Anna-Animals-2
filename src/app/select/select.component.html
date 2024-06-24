@@ -1,0 +1,14 @@
+<div class="ml-4 mt-6">
+  <div class="selectBox mt-4">
+    <select id="selectAnimal">
+      <option value="0">Select your Animal</option>
+      <option *ngFor="let animal of readAnimal" [value]="animal.id">
+        {{ animal.name }}
+      </option>
+    </select>
+    <div id="output">
+      <!-- Output will be displayed here -->
+      {{ selectedAnimalDescription }}
+    </div>
+  </div>
+</div>
