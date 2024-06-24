@@ -17,12 +17,13 @@ export class CreateComponent implements OnInit {
   getparamid: any;
 
   getAlldata() {
-    console.log('inside getAll data');
-    this.api.getAllAnimals()
+    console.log('inside getAlldata()');
+    this.api
+      .getAllAnimals()
       .then((res: any) => {
         console.log('this is res data', res);
         this.readAnimal = res; // Assuming res is an array of animals
-        console.log('Received data:', this.readAnimal);
+        console.log('Data output:', this.readAnimal);
       })
       .catch((error: any) => {
         console.error('Error fetching all animals:', error);
@@ -31,9 +32,22 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.getAlldata();
+
+    this.router.paramMap.subscribe(params => {
+      this.getparamid = params.get('id');
+      if (!this.getparamid) {
+        console.error('ID parameter is null or undefined.');
+        // Handle this scenario accordingly, e.g., redirect to a default route or display an error message.
+      } else {
+        console.log(this.getparamid, 'mini subscribe get paramsid');
+      }
+    });
+    console.log("trying to get id of parameter", this.router.snapshot.paramMap.get('id'))
     this.getparamid = this.router.snapshot.paramMap.get('id');
+    console.log('getparamid:', this.getparamid);
     if (this.getparamid) {
-      this.api.getSingleData(this.getparamid)
+      this.api
+        .getSingleData(this.getparamid)
         .then((res: any) => {
           console.log('Selected update data:', res);
           this.animalForm.patchValue({
@@ -57,28 +71,29 @@ export class CreateComponent implements OnInit {
   });
 
   animalSubmit() {
-    console.log("update animal function in component??")
+    console.log('COME ON HELL WHERE ARE YOU');
     console.log(this.animalForm.value);
+
     if (this.animalForm.value) {
-      const res = this.api.updateData(this.animalForm.value, this.getparamid)
-      console.log(res, 'Data Updated Successfully');
+      console.log(this.animalForm.value);
+      const res = this.api.createAnimal(this.animalForm.value);
+      console.log(res, 'Data Added Successfully');
+      this.animalForm.reset();
       // this.successMsg = res.message;
       this.getAlldata();
-
     } else {
       this.errMsg = 'All Fields Are Required';
     }
   }
 
   updateAnimal() {
-    console.log("update animal function in component??")
+    console.log('update animal function in component??');
     console.log(this.animalForm.value);
     if (this.animalForm.value) {
-      const res = this.api.updateData(this.animalForm.value, this.getparamid)
+      const res = this.api.updateData(this.animalForm.value, this.getparamid);
       console.log(res, 'Data Updated Successfully');
       // this.successMsg = res.message;
       this.getAlldata();
-
     } else {
       this.errMsg = 'All Fields Are Required';
     }

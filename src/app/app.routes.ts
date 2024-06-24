@@ -15,6 +15,11 @@ export const routes: Routes = [
     title: 'Create'
   },
   {
+    path: 'create/:id',
+    component: CreateComponent,
+    title: 'Update'
+  },
+  {
     path: 'update',
     component: UpdateComponent,
     title: 'Update'

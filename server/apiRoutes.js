@@ -90,6 +90,32 @@ router.get('/create', (req, res) => {
   });
 });
 
+//update an animal
+router.get('/create/:id', (req, res) => {
+  let id = req.params.id;
+  let animal = req.body.name;
+  let description = req.body.description;
+  let updated_At = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+  let qr = `UPDATE animals SET name = '${animal}', description = '${description}', updated_At = '${updated_At}'
+            WHERE id = '${id}'`;
+
+  db.query(qr, (err, results) => {
+    if (err) {
+      console.log("Error updating animal:", err);
+      res.status(500).send({
+        message: "Error updating animal",
+        error: err
+      });
+    } else {
+      res.send({
+        message: "Animal updated successfully",
+        data: results
+      });
+    }
+  });
+});
+
 // delete animal
 router.get('/data/delete/:id', (req, res) => {
   let uId = req.params.id;

@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use('/api', apiRoutes);
 app.use('/', staticFiles);
 app.use('/create', staticFiles)
+app.use('/create/:id', staticFiles)
 app.use('/update', staticFiles)
 
 // Start the server

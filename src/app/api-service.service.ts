@@ -10,14 +10,14 @@ export class ApiServiceService {
 
   //getting all animals
   getAllAnimals(): Promise<any[]> {
-    console.log('in getAllAnimals');
+    console.log('in getAllAnimals()');
     return fetch(this.apiUrl)
       .then(response => {
         if (!response.ok) {
-          console.log('not okay');
+          console.log('not okay in getAllAnimals()');
           throw new Error('Network response was not ok');
         }
-        console.log('all good');
+        console.log(response.json);
         return response.json() as Promise<any[]>; // Define the return type explicitly
       })
       .catch(error => {
