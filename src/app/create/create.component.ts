@@ -78,9 +78,9 @@ export class CreateComponent implements OnInit {
       console.log(this.animalForm.value);
       const res = this.api.createAnimal(this.animalForm.value);
       console.log(res, 'Data Added Successfully');
-      this.animalForm.reset();
+      // this.animalForm.reset();
       // this.successMsg = res.message;
-      this.getAlldata();
+      // this.getAlldata();
     } else {
       this.errMsg = 'All Fields Are Required';
     }
@@ -93,7 +93,7 @@ export class CreateComponent implements OnInit {
       const res = this.api.updateData(this.animalForm.value, this.getparamid);
       console.log(res, 'Data Updated Successfully');
       // this.successMsg = res.message;
-      this.getAlldata();
+      // this.getAlldata();
     } else {
       this.errMsg = 'All Fields Are Required';
     }

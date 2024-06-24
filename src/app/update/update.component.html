@@ -18,8 +18,8 @@
       </tr>
     </thead>
     <tbody>
+      @for (animal of readAnimal; track animal){
       <tr>
-        @for (animal of readAnimal; track animal){
         <td>{{ animal.name }}</td>
         <td>{{ animal.description }}</td>
         <td>
@@ -32,8 +32,8 @@
             <img src="img/pencil.png" alt="Delete" width="30" height="30" />
           </a>
         </td>
-        }
       </tr>
+    }
     </tbody>
   </table>
 </div>
