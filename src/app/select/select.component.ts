@@ -13,7 +13,7 @@ export class SelectComponent implements OnInit {
   readAnimal: any;
   selectedAnimalDescription!: any;
 
-  constructor(private router: Router, private api: ApiServiceService) {}
+  constructor(private router: Router, private api: ApiServiceService) { }
 
   ngOnInit(): void {
     this.getAlldata();

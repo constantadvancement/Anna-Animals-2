@@ -17,7 +17,7 @@ export class UpdateComponent implements OnInit {
   readAnimal!: any[];
   successMsg: string | null = null; // Initialize successMsg with null or appropriate initial value
 
-  constructor(private router: Router, private api: ApiServiceService) {}
+  constructor(private router: Router, private api: ApiServiceService) { }
 
   ngOnInit(): void {
     this.getAlldata();

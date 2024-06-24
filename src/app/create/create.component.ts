@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { ApiServiceService } from '../api-service.service';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
-  constructor(private api: ApiServiceService, private router: ActivatedRoute) {}
+  constructor(private api: ApiServiceService, private router: ActivatedRoute) { }
 
   readAnimal: any;
   errMsg: any;
@@ -80,20 +80,19 @@ export class CreateComponent implements OnInit {
         .then((res: any) => {
           console.log('Data Added Successfully:', res);
           this.animalForm.reset();
-          // Optionally show success message
-          // this.successMsg = res.message;
+
+          this.successMsg = res.message;
           this.getAlldata(); // Refresh data after successful submission
         })
         .catch((error: any) => {
           console.error('Error adding animal:', error);
-          // Optionally show error message
-          // this.errMsg = 'Error adding animal';
+
+          this.errMsg = 'Error adding animal';
         });
     } else {
       this.errMsg = 'All Fields Are Required';
     }
   }
-
 
   updateAnimal() {
     console.log('update animal function in component', this.animalForm.value);
@@ -105,7 +104,7 @@ export class CreateComponent implements OnInit {
       this.api.updateData(id, dataToUpdate)
         .then((res: any) => {
           console.log('Data Updated Successfully', res);
-          // this.successMsg = res.message;
+          this.successMsg = res.message;
           this.getAlldata(); // Refresh data after update
         })
         .catch((error: any) => {

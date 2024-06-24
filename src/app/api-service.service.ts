@@ -36,15 +36,15 @@ export class ApiServiceService {
       },
       body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Response from server:', data);
-      return data; // Assuming your backend sends back a response
-    })
-    .catch(error => {
-      console.error('Error creating animal:', error);
-      throw error;
-    });
+      .then(response => response.json())
+      .then(data => {
+        console.log('Response from server:', data);
+        return data; // Assuming your backend sends back a response
+      })
+      .catch(error => {
+        console.error('Error creating animal:', error);
+        throw error;
+      });
   }
 
 
