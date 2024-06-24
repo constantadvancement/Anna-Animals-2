@@ -33,38 +33,23 @@ export class SelectComponent implements OnInit {
       });
   }
 
-  onAnimalSelected(selectedId: any): void {
+  async onAnimalSelected(selectedId: any): Promise<void> {
     console.log('Selected animal ID:', selectedId);
 
-    if (selectedId < 0){
-      this.selectedAnimalDescription = '';
-
+    if (selectedId < 0) {
+      this.selectedAnimalDescription = ''; // Handle default case where 'Select your Animal' is selected
+      return;
     }
 
-    else if (selectedId !== '0') {
-      // Make API call or perform logic based on selectedId
-      this.api
-        .getDescription(selectedId)
-        .then((res: any) => {
-          console.log('API Response:', res); // Log entire response for debugging
-
-          // Check if res.data exists and has a length > 0
-          if (this.readAnimal.length > 0) {
-            console.log('what its grabing', this.readAnimal[selectedId])
-            console.log('Inside if statement:', this.readAnimal[selectedId].description);
-            this.selectedAnimalDescription = this.readAnimal[selectedId].description;
-          } else {
-            console.log('No data found in response.');
-            this.selectedAnimalDescription = 'Animal description not found';
-          }
-        })
-        .catch((error: any) => {
-          console.error('Error fetching animal description:', error);
-          this.selectedAnimalDescription = 'Error fetching description';
-        });
-    } else {
-      this.selectedAnimalDescription = this.readAnimal[0].description;
-
+    try {
+      const description = await this.api.getDescription(selectedId);
+      console.log('Selected animal description:', description);
+      this.selectedAnimalDescription = description || 'Animal description not found';
+    } catch (error) {
+      console.error('Error fetching animal description:', error);
+      this.selectedAnimalDescription = 'Error fetching description';
     }
   }
+
+
 }

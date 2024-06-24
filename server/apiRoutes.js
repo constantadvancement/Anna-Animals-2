@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mysql = require("mysql2");
 
+router.use(express.json());
+
 // Connecting to SQL database
 const db = mysql.createConnection({
   host: "localhost",
@@ -43,8 +45,9 @@ router.get('/data', (req, res) => {
 });
 
 // get data by single id
-router.get('/data:id', (req, res) => {
+router.get('/data/:id', (req, res) => {
   let qrId = req.params.id;
+  console.log('backend id', qrId)
   let qr = `SELECT * FROM animals WHERE id = ${qrId}`;
   db.query(qr, (err, results) => {
     if (err) {
@@ -63,8 +66,8 @@ router.get('/data:id', (req, res) => {
   });
 });
 
-// create
-router.get('/create', (req, res) => {
+// Create an animal
+router.post('/create', (req, res) => {
   let name = req.body.name;
   let id = req.body.id;
   let description = req.body.description;
@@ -90,8 +93,8 @@ router.get('/create', (req, res) => {
   });
 });
 
-//update an animal
-router.get('/create/:id', (req, res) => {
+// Update an animal
+router.put('/create/:id', (req, res) => {
   let id = req.params.id;
   let animal = req.body.name;
   let description = req.body.description;
@@ -115,6 +118,7 @@ router.get('/create/:id', (req, res) => {
     }
   });
 });
+
 
 // delete animal
 router.get('/data/delete/:id', (req, res) => {
@@ -141,15 +145,16 @@ router.get('/data/delete/:id', (req, res) => {
 router.get('/data/descriptions/:id', (req, res) => {
   console.log('in apiRoutes function for descriptions')
   let qrId = req.params.id;
-  let qr = `SELECT description FROM animals WHERE id = ${qrId-1}`;
+
+  let qr = `SELECT description FROM animals WHERE id = ${qrId}`;
   db.query(qr, (err, results) => {
     if (err) {
       console.log("Error fetching animal by ID:", err);
     }
     if (results.length > 0) {
       res.send({
-        message: "Animal description found",
         data: results,
+
       });
     } else {
       res.send({

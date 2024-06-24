@@ -26,13 +26,19 @@
       <!-- Hidden input for updated_At -->
       <input type="hidden" id="updated_At" name="updated_At" formControlName="updated_At" />
 
-      <button (click)="animalSubmit()" type="submit" class="btn btn-primary mt-4 ml-2 mr-4">
-        Create New Animal
-      </button>
+      @if (!getparamid){
+        <button (click)="animalSubmit()" type="submit" class="btn btn-primary mt-4 ml-2 mr-4">
+          Create New Animal
+        </button>
+      }
 
-      <button (click)="updateAnimal()" type="submit" class="btn btn-success mt-4 ml-2 mr-4" *ngIf="getparamid">
-        Update Animal
-      </button>
+      @if (getparamid){
+        <button (click)="updateAnimal()" type="submit" class="btn btn-success mt-4 ml-2 mr-4">
+          Update Animal
+        </button>
+
+      }
+
     </div>
   </form>
 </div>

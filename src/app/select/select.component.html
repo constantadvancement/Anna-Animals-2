@@ -3,7 +3,7 @@
     <select id="selectAnimal" #animalSelect (change)="onAnimalSelected(animalSelect.value)">
       <option value ="-1">Select your Animal</option>
       @for ( animal of readAnimal; track animal) {
-        <option [value]="animal.id-1">{{ animal.name }}</option>
+        <option [value]="animal.id">{{ animal.name }}</option>
       }
     </select>
     <div id="output">

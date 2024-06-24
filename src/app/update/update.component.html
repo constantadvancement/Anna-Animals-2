@@ -23,13 +23,13 @@
         <td>{{ animal.name }}</td>
         <td>{{ animal.description }}</td>
         <td>
-          <button class="btn btn-danger delete-icon">
+          <button class="btn btn-danger delete-icon" (click)="deleteId(animal.id)">
             <img src="img/trash.png" alt="Delete" width="30" height="30" />
           </button>
         </td>
         <td>
-          <a class="btn btn-success edit-icon">
-            <img src="img/pencil.png" alt="Delete" width="30" height="30" />
+          <a [routerLink]="['/create', animal.id]" class="btn btn-success edit-icon">
+          <img src="img/pencil.png" alt="Delete" width="30" height="30" />
           </a>
         </td>
       </tr>
