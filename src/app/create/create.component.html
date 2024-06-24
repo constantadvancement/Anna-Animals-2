@@ -1,7 +1,16 @@
 <!-- Error message -->
-<div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show mt-4 ml-4" role="alert">
+<div
+  *ngIf="errMsg"
+  class="alert alert-danger alert-dismissible fade show mt-4 ml-4"
+  role="alert"
+>
   <strong>{{ errMsg }}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
 </div>
 
 <div class="mt-4 ml-4">
@@ -9,28 +18,67 @@
     <div class="form-row">
       <div class="col">
         <label class="form-id-label" for="id">ID:</label>
-        <input type="text" class="form-control" id="id" formControlName="id" autocomplete="off" />
+        <input
+          type="text"
+          class="form-control"
+          id="id"
+          formControlName="id"
+          autocomplete="off"
+        />
       </div>
       <div class="col">
         <label class="form-name-label" for="name">Name:</label>
-        <input type="text" class="form-control" id="name" formControlName="name" autocomplete="off" />
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          autocomplete="off"
+        />
       </div>
       <div class="col">
-        <label class="form-description-label" for="description">Derscription:</label>
-        <input type="text" class="form-control" id="description" formControlName="description" autocomplete="off" />
+        <label class="form-description-label" for="description"
+          >Derscription:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+          autocomplete="off"
+        />
       </div>
 
       <!-- Hidden input for created_At -->
-      <input type="hidden" id="created_At" name="created_At" formControlName="created_At" />
+      <input
+        type="hidden"
+        id="created_At"
+        name="created_At"
+        formControlName="created_At"
+      />
 
       <!-- Hidden input for updated_At -->
-      <input type="hidden" id="updated_At" name="updated_At" formControlName="updated_At" />
+      <input
+        type="hidden"
+        id="updated_At"
+        name="updated_At"
+        formControlName="updated_At"
+      />
 
-      <button (click)="animalSubmit()" type="submit" class="btn btn-primary mt-4 ml-2 mr-4" >
+      <button
+        (click)="animalSubmit()"
+        type="submit"
+        class="btn btn-primary mt-4 ml-2 mr-4"
+      >
         Create New Animal
       </button>
 
-      <button (click)="updateAnimal()" type="submit" class="btn btn-success mt-4 ml-2 mr-4" *ngIf="getparamid">
+      <button
+        (click)="updateAnimal()"
+        type="submit"
+        class="btn btn-success mt-4 ml-2 mr-4"
+        *ngIf="getparamid"
+      >
         Update Animal
       </button>
     </div>
@@ -49,12 +97,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let animal of readAnimal">
+      <tr>
+        @for (animal of readAnimal; track readAnimal) {
         <th scope="row">{{ animal.id }}</th>
         <td>{{ animal.name }}</td>
         <td>{{ animal.description }}</td>
         <td>{{ animal.created_At }}</td>
         <td>{{ animal.updated_At }}</td>
+        }
       </tr>
     </tbody>
   </table>

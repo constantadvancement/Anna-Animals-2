@@ -21,10 +21,11 @@ export class SelectComponent implements OnInit {
 
   getAlldata(): void {
     console.log('inside getAll data');
-    this.api.getAllAnimals()
+    this.api
+      .getAllAnimals()
       .then((res: any) => {
         console.log('this is res data', res);
-        this.readAnimal = res || []; // Initialize with empty array if res is falsy
+        this.readAnimal = res.data || []; // Initialize with empty array if res is falsy
         console.log('Received data:', this.readAnimal);
       })
       .catch((error: any) => {
@@ -36,9 +37,11 @@ export class SelectComponent implements OnInit {
     console.log('Selected animal ID:', selectedId);
 
     if (selectedId !== '0') {
-      this.api.getDescription(selectedId)
+      // Make API call or perform logic based on selectedId
+      this.api
+        .getDescription(selectedId)
         .then((res: any) => {
-          if (res && res.data && res.data.length > 0) {
+          if (res.data && res.data.length > 0) {
             this.selectedAnimalDescription = res.data[0].description;
           } else {
             this.selectedAnimalDescription = 'Animal description not found';
@@ -49,6 +52,7 @@ export class SelectComponent implements OnInit {
           this.selectedAnimalDescription = 'Error fetching description';
         });
     } else {
+      // Handle default case where '0' is selected
       this.selectedAnimalDescription = '';
     }
   }

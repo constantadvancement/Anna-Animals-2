@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
       .getAllAnimals()
       .then((res: any) => {
         console.log('this is res data', res);
-        this.readAnimal = res; // Assuming res is an array of animals
+        this.readAnimal = res.data; // Assuming res is an array of animals
         console.log('Data output:', this.readAnimal);
       })
       .catch((error: any) => {

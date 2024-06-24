@@ -38,7 +38,7 @@ export class UpdateComponent implements OnInit {
     this.api.getAllAnimals()
       .then((res: any) => {
         console.log('this is res data', res);
-        this.readAnimal = res; // Assuming res is an array of animals
+        this.readAnimal = res.data; // Assuming res is an array of animals
         console.log('Received data:', this.readAnimal);
       })
       .catch((error: any) => {
